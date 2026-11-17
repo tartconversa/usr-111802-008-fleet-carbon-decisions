@@ -1,0 +1,8 @@
+{
+  "name": "配送车队运营",
+  "event_kinds": [
+    "trip",
+    "fuel",
+    "charge"
+  ]
+}
