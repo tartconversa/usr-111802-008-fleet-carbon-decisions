@@ -1,30 +1,102 @@
 {
   "entities": [
-    {
-      "entity_id": "entity-1",
-      "label": "业务主体一",
-      "group_id": "group-1"
-    }
+    {"entity_id": "V-101", "label": "柴油车101", "group_id": "fleet"},
+    {"entity_id": "V-102", "label": "柴油车102", "group_id": "fleet"},
+    {"entity_id": "V-103", "label": "柴油车103", "group_id": "fleet"},
+    {"entity_id": "V-201", "label": "电动车201", "group_id": "fleet"},
+    {"entity_id": "V-202", "label": "电动车202", "group_id": "fleet"}
   ],
   "aliases": [
-    {
-      "source": "system",
-      "external_id": "external-1",
-      "entity_id": "entity-1"
-    }
+    {"source": "telematics", "external_id": "V-101", "entity_id": "V-101"},
+    {"source": "telematics", "external_id": "V-102", "entity_id": "V-102"},
+    {"source": "telematics", "external_id": "V-103", "entity_id": "V-103"},
+    {"source": "telematics", "external_id": "V-201", "entity_id": "V-201"},
+    {"source": "telematics", "external_id": "V-202", "entity_id": "V-202"},
+    {"source": "billing", "external_id": "V-201", "entity_id": "V-201"},
+    {"source": "billing", "external_id": "V-202", "entity_id": "V-202"}
+  ],
+  "assignments": [
+    {"vehicle": "V-101", "power": "diesel", "route": "route-north", "effective_from": "2026-10-01T00:00:00+08:00"},
+    {"vehicle": "V-102", "power": "diesel", "route": "route-south", "effective_from": "2026-10-01T00:00:00+08:00"},
+    {"vehicle": "V-102", "power": "diesel", "route": "route-east", "effective_from": "2026-11-15T00:00:00+08:00", "recorded_at": "2026-11-17T09:00:00+08:00"},
+    {"vehicle": "V-103", "power": "diesel", "route": "route-harbor", "effective_from": "2026-11-01T00:00:00+08:00"},
+    {"vehicle": "V-201", "power": "electric", "route": "route-north", "effective_from": "2026-11-01T00:00:00+08:00"},
+    {"vehicle": "V-202", "power": "electric", "route": "route-west", "effective_from": "2026-10-01T00:00:00+08:00"}
   ],
   "events": [
-    {
-      "source": "system",
-      "event_id": "sample-1",
-      "revision": 1,
-      "kind": "trip",
-      "entity": "external-1",
-      "occurred_at": "2026-11-01T10:00:00+08:00",
-      "observed_at": "2026-11-01T11:00:00+08:00",
-      "payload": {
-        "amount": 3
-      }
-    }
-  ]
+    {"source": "telematics", "event_id": "t-n-1", "revision": 1, "kind": "trip", "entity": "V-101",
+     "occurred_at": "2026-10-10T09:00:00+08:00", "observed_at": "2026-10-10T18:00:00+08:00",
+     "payload": {"service_units": 120}},
+    {"source": "telematics", "event_id": "t-n-2", "revision": 1, "kind": "trip", "entity": "V-101",
+     "occurred_at": "2026-10-20T09:00:00+08:00", "observed_at": "2026-10-20T18:00:00+08:00",
+     "payload": {"service_units": 130}},
+    {"source": "telematics", "event_id": "t-n-3", "revision": 1, "kind": "trip", "entity": "V-101",
+     "occurred_at": "2026-10-25T15:00:00+08:00", "observed_at": "2026-10-25T18:00:00+08:00",
+     "payload": {"empty": true}},
+    {"source": "telematics", "event_id": "f-n-1", "revision": 1, "kind": "fuel", "entity": "V-101",
+     "occurred_at": "2026-10-15T18:00:00+08:00", "observed_at": "2026-10-15T20:00:00+08:00",
+     "payload": {"liters": 60}},
+    {"source": "telematics", "event_id": "f-n-2", "revision": 1, "kind": "fuel", "entity": "V-101",
+     "occurred_at": "2026-10-30T18:00:00+08:00", "observed_at": "2026-10-30T20:00:00+08:00",
+     "payload": {"liters": 55}},
+    {"source": "telematics", "event_id": "t-s-1", "revision": 1, "kind": "trip", "entity": "V-102",
+     "occurred_at": "2026-10-12T09:00:00+08:00", "observed_at": "2026-10-12T18:00:00+08:00",
+     "payload": {"service_units": 100}},
+    {"source": "telematics", "event_id": "t-s-2", "revision": 1, "kind": "trip", "entity": "V-102",
+     "occurred_at": "2026-10-22T09:00:00+08:00", "observed_at": "2026-10-22T18:00:00+08:00",
+     "payload": {"service_units": 90}},
+    {"source": "telematics", "event_id": "f-s-1", "revision": 1, "kind": "fuel", "entity": "V-102",
+     "occurred_at": "2026-10-18T18:00:00+08:00", "observed_at": "2026-10-18T20:00:00+08:00",
+     "payload": {"liters": 70}},
+    {"source": "telematics", "event_id": "t-w-1", "revision": 1, "kind": "trip", "entity": "V-202",
+     "occurred_at": "2026-10-11T09:00:00+08:00", "observed_at": "2026-10-11T18:00:00+08:00",
+     "payload": {"service_units": 80}},
+    {"source": "billing", "event_id": "c-w-1", "revision": 1, "kind": "charge", "entity": "V-202",
+     "occurred_at": "2026-10-12T02:00:00+08:00", "observed_at": "2026-10-12T08:00:00+08:00",
+     "payload": {"kwh": 50}},
+    {"source": "telematics", "event_id": "t-n-4", "revision": 1, "kind": "trip", "entity": "V-201",
+     "occurred_at": "2026-11-05T09:00:00+08:00", "observed_at": "2026-11-05T18:00:00+08:00",
+     "payload": {"service_units": 110}},
+    {"source": "telematics", "event_id": "t-n-5", "revision": 1, "kind": "trip", "entity": "V-201",
+     "occurred_at": "2026-11-12T09:00:00+08:00", "observed_at": "2026-11-12T18:00:00+08:00",
+     "payload": {"service_units": 115}},
+    {"source": "billing", "event_id": "c-n-1", "revision": 1, "kind": "charge", "entity": "V-201",
+     "occurred_at": "2026-11-06T01:00:00+08:00", "observed_at": "2026-11-06T08:00:00+08:00",
+     "payload": {"kwh": 40}},
+    {"source": "billing", "event_id": "c-n-1", "revision": 2, "kind": "charge", "entity": "V-201",
+     "occurred_at": "2026-11-06T01:00:00+08:00", "observed_at": "2026-11-12T10:00:00+08:00",
+     "payload": {"kwh": 46}},
+    {"source": "billing", "event_id": "c-n-2", "revision": 1, "kind": "charge", "entity": "V-201",
+     "occurred_at": "2026-11-13T20:00:00+08:00", "observed_at": "2026-11-14T08:00:00+08:00",
+     "payload": {"kwh": 30}},
+    {"source": "telematics", "event_id": "t-s-3", "revision": 1, "kind": "trip", "entity": "V-102",
+     "occurred_at": "2026-11-08T09:00:00+08:00", "observed_at": "2026-11-08T18:00:00+08:00",
+     "payload": {"service_units": 95}},
+    {"source": "telematics", "event_id": "t-e-1", "revision": 1, "kind": "trip", "entity": "V-102",
+     "occurred_at": "2026-11-16T09:00:00+08:00", "observed_at": "2026-11-16T18:00:00+08:00",
+     "payload": {"service_units": 60}},
+    {"source": "telematics", "event_id": "f-e-1", "revision": 1, "kind": "fuel", "entity": "V-102",
+     "occurred_at": "2026-11-16T18:30:00+08:00", "observed_at": "2026-11-16T20:00:00+08:00",
+     "payload": {"liters": 30}},
+    {"source": "telematics", "event_id": "t-h-1", "revision": 1, "kind": "trip", "entity": "V-103",
+     "occurred_at": "2026-11-02T10:00:00+08:00", "observed_at": "2026-11-02T18:00:00+08:00",
+     "payload": {"empty": true}},
+    {"source": "telematics", "event_id": "f-h-1", "revision": 1, "kind": "fuel", "entity": "V-103",
+     "occurred_at": "2026-11-03T18:00:00+08:00", "observed_at": "2026-11-03T20:00:00+08:00",
+     "payload": {"liters": 20}},
+    {"source": "telematics", "event_id": "t-x-1", "revision": 1, "kind": "trip", "entity": "V-999",
+     "occurred_at": "2026-11-05T09:00:00+08:00", "observed_at": "2026-11-05T18:00:00+08:00",
+     "payload": {"service_units": 10}}
+  ],
+  "plans": [
+    {"plan_id": "plan-a", "routes": ["route-south"], "note": "南线电动化"},
+    {"plan_id": "plan-b", "routes": ["route-south", "route-east"], "note": "南线与东线电动化"},
+    {"plan_id": "plan-c", "routes": ["route-east"], "note": "东线电动化"}
+  ],
+  "approval": {
+    "approval_id": "approval-2026-11-10",
+    "plan_id": "plan-b",
+    "approved_at": "2026-11-10T18:00:00+08:00",
+    "as_of": "2026-11-10T23:59:59+08:00"
+  }
 }

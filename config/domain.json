@@ -4,5 +4,13 @@
     "trip",
     "fuel",
     "charge"
-  ]
+  ],
+  "emissions": {
+    "diesel_kg_per_liter": "2.63",
+    "electricity_periods": [
+      {"start": "00:00", "end": "07:00", "kg_per_kwh": "0.34"},
+      {"start": "07:00", "end": "19:00", "kg_per_kwh": "0.58"},
+      {"start": "19:00", "end": "24:00", "kg_per_kwh": "0.79"}
+    ]
+  }
 }
